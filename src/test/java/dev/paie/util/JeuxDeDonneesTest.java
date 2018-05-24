@@ -1,7 +1,6 @@
 package dev.paie.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
@@ -15,34 +14,34 @@ import dev.paie.entite.*;
 
 public class JeuxDeDonneesTest {
 	private ClassPathXmlApplicationContext context;
-    private BulletinSalaire bulletin1;
+    private BulletinSalaire bulletin;
 
     @Before
     public void onSetup() {
         context = new ClassPathXmlApplicationContext("jdd-config.xml");
-        bulletin1 = context.getBean("bulletin1", BulletinSalaire.class);
+        bulletin = context.getBean("bulletin", BulletinSalaire.class);
     }
 
     @Test
     public void test_primeExceptionnelle() {
-        assertThat(bulletin1.getPrimeExceptionnelle()).isEqualTo(new BigDecimal("1000"));
+        assertThat(bulletin.getPrimeExceptionnelle()).isEqualTo(new BigDecimal("1000"));
     }
 
     @Test
     public void test_employe() {
-        assertThat(bulletin1.getRemunerationEmploye().getMatricule()).isEqualTo("M01");
+        assertThat(bulletin.getRemunerationEmploye().getMatricule()).isEqualTo("M01");
     }
 
     @Test
     public void test_entreprise() {
-        assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getSiret()).isEqualTo("80966785000022");
-        assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getDenomination()).isEqualTo("Dev Entreprise");
-        assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getCodeNaf()).isEqualTo("6202A");
+        assertThat(bulletin.getRemunerationEmploye().getEntreprise().getSiret()).isEqualTo("80966785000022");
+        assertThat(bulletin.getRemunerationEmploye().getEntreprise().getDenomination()).isEqualTo("Dev Entreprise");
+        assertThat(bulletin.getRemunerationEmploye().getEntreprise().getCodeNaf()).isEqualTo("6202A");
     }
 
     @Test
     public void test_cotisationsNonImposables() {
-        List<Cotisation> cotisationsNonImposables = bulletin1.getRemunerationEmploye().getProfilRemuneration()
+        List<Cotisation> cotisationsNonImposables = bulletin.getRemunerationEmploye().getProfilRemuneration()
                 .getCotisationsNonImposables();
         Stream.of("EP01", "EP02", "EP03", "EP04", "EP05", "EP06", "EP07", "EP12", "EP19", "EP20", "EPR1", "E900",
                 "EP28", "EP37")
@@ -53,9 +52,9 @@ public class JeuxDeDonneesTest {
 
     @Test
     public void test_cotisationImposables() {
-        List<Cotisation> cotisationsImposables = bulletin1.getRemunerationEmploye().getProfilRemuneration()
+        List<Cotisation> cotisationsImposables = bulletin.getRemunerationEmploye().getProfilRemuneration()
                 .getCotisationsImposables();
-        Stream.of("SP01", "SP02")
+         Stream.of("SP01", "SP02")
                 .forEach(code -> assertTrue("verification code " + code,
                         cotisationsImposables.stream().filter(c -> c.getCode().equals(code)).findAny().isPresent()));
 
@@ -63,8 +62,8 @@ public class JeuxDeDonneesTest {
 
     @Test
     public void test_grade() {
-        assertThat(bulletin1.getRemunerationEmploye().getGrade().getNbHeuresBase()).isEqualTo(new BigDecimal("151.67"));
-        assertThat(bulletin1.getRemunerationEmploye().getGrade().getTauxBase()).isEqualTo(new BigDecimal("11.0984"));
+        assertThat(bulletin.getRemunerationEmploye().getGrade().getNbHeuresBase()).isEqualTo(new BigDecimal("151.67"));
+        assertThat(bulletin.getRemunerationEmploye().getGrade().getTauxBase()).isEqualTo(new BigDecimal("11.0984"));
     }
 
     @After
