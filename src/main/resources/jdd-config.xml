@@ -45,6 +45,9 @@
 	    </property>
 	</bean>
 	
+
+	
+	
 	<bean id="entreprise" class="dev.paie.entite.Entreprise">
 		<property name="siret" value="80966785000022"></property>
 		<property name="denomination" value="Dev Entreprise"></property>
@@ -66,6 +69,7 @@
 		<property name="periode" ref="periode"></property>
 		<property name="primeExceptionnelle" value="1000"></property>
 	</bean>
+	
 
 
 </beans>
