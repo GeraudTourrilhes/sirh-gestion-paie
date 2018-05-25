@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import dev.paie.config.H2ConfigJPA;
+import dev.paie.config.H2Config;
 import dev.paie.config.JpaConfig;
 import dev.paie.entite.Cotisation;
 
-@ContextConfiguration(classes = { CotisationServiceJpa.class, JpaConfig.class, H2ConfigJPA.class })
+@ContextConfiguration(classes = { CotisationServiceJpa.class, JpaConfig.class, H2Config.class })
 @RunWith(SpringRunner.class)
 public class CotisationServiceJpaTest {
 

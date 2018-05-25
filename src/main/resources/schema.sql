@@ -1,3 +1,5 @@
+Drop table if exists grade;
+
 CREATE TABLE grade (
   Id INT(11) NOT NULL,
   code VARCHAR(255) DEFAULT NULL,
