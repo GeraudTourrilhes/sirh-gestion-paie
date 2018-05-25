@@ -10,11 +10,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dev.paie.config.H2Config;
 import dev.paie.config.JeuxDeDonneesConfig;
-import dev.paie.config.JpaConfig;
-import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Grade;
 
-@ContextConfiguration(classes = { ServicesConfig.class, JpaConfig.class, H2Config.class, JeuxDeDonneesConfig.class })
+@ContextConfiguration(classes = { GradeServiceJdbcTemplate.class, H2Config.class, JeuxDeDonneesConfig.class })
 @RunWith(SpringRunner.class)
 public class GradeServiceJdbcTemplateTest {
 
