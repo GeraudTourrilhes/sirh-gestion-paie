@@ -53,15 +53,15 @@
 	
 	
 	<bean id="grade" class="dev.paie.entite.Grade">
-		<property name="id" value="6"></property>
 		<property name="code" value="G0"></property>
 		<property name="nbHeuresBase" value="151.67"></property>
-		<property name="tauxBase" value="11.09"></property>
+		<property name="tauxBase" value="11.0984"></property>
     </bean>
     
 	
 	
 	<bean id="bulletin" class="dev.paie.entite.BulletinSalaire">
+		<property name="id" value="1"></property>
 		<property name="remunerationEmploye" ref="remunerationEmploye"></property>
 		<property name="periode" ref="periode"></property>
 		<property name="primeExceptionnelle" value="1000"></property>

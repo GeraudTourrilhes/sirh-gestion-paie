@@ -25,6 +25,8 @@ public class GradeServiceJdbcTemplateTest {
 	@Test
 	public void test_sauvegarder_lister_mettre_a_jour() {
 
+		gradeService.supprimer();
+
 		gradeService.sauvegarder(grade1);
 
 		assertThat(gradeService.lister().contains(grade1));

@@ -10,4 +10,6 @@ public interface GradeService {
 	void mettreAJour(Grade grade);
 
 	List<Grade> lister();
+
+	void supprimer();
 }

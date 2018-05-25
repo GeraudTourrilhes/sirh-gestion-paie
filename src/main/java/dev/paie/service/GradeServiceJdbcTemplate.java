@@ -44,4 +44,10 @@ public class GradeServiceJdbcTemplate implements GradeService {
 		List<Grade> grades = jdbcTemplate.query(sql, new GradeMapper());
 		return grades;
 	}
+
+	@Override
+	public void supprimer() {
+		String sql = "delete FROM Grade";
+		jdbcTemplate.update(sql);
+	}
 }
