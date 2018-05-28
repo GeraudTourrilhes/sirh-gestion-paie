@@ -2,6 +2,7 @@ package dev.paie.entite;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,12 +14,16 @@ public class Cotisation {
 	@GeneratedValue
 	private Integer id;
 
+	@Column(name = "code")
 	private String code;
 
+	@Column(name = "libelle")
 	private String libelle;
 
+	@Column(name = "tauxSalarial")
 	private BigDecimal tauxSalarial;
 
+	@Column(name = "tauxPatronal")
 	private BigDecimal tauxPatronal;
 
 	public Cotisation(Integer id, String code, String libelle, BigDecimal tauxSalarial, BigDecimal tauxPatronal) {
