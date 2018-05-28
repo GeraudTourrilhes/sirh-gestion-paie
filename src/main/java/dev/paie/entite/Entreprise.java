@@ -1,7 +1,13 @@
 package dev.paie.entite;
 
-public class Entreprise {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Entreprise {
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private String siret;
 	private String denomination;
