@@ -5,13 +5,14 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Cotisation {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "code")
@@ -76,6 +77,12 @@ public class Cotisation {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Cotisation [id=" + id + ", code=" + code + ", libelle=" + libelle + ", tauxSalarial=" + tauxSalarial
+				+ ", tauxPatronal=" + tauxPatronal + "]";
 	}
 
 }

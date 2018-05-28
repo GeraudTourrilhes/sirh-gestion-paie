@@ -64,6 +64,13 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 		entreprises = new ArrayList<Entreprise>(context.getBeansOfType(Entreprise.class).values());
 
 		context.close();
+		for (Entreprise entreprise : entreprises) {
+			entrepriseRepository.save(entreprise);
+		}
+
+		for (Cotisation cotisation : cotisations) {
+			cotisationRepository.save(cotisation);
+		}
 
 		for (ProfilRemuneration profilRemuneration : profilRemunerations) {
 			profilRemunerationsRepository.save(profilRemuneration);
@@ -71,14 +78,6 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 		for (Grade grade : grades) {
 			gradeRepository.save(grade);
-		}
-
-		for (Entreprise entreprise : entreprises) {
-			entrepriseRepository.save(entreprise);
-		}
-
-		for (Cotisation cotisation : cotisations) {
-			cotisationRepository.save(cotisation);
 		}
 
 		int anneeCourante = Calendar.getInstance().get(Calendar.YEAR);
