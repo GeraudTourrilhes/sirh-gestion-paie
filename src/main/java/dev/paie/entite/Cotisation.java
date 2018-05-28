@@ -26,9 +26,8 @@ public class Cotisation {
 	@Column(name = "tauxPatronal")
 	private BigDecimal tauxPatronal;
 
-	public Cotisation(Integer id, String code, String libelle, BigDecimal tauxSalarial, BigDecimal tauxPatronal) {
+	public Cotisation(String code, String libelle, BigDecimal tauxSalarial, BigDecimal tauxPatronal) {
 		super();
-		this.id = id;
 		this.code = code;
 		this.libelle = libelle;
 		this.tauxSalarial = tauxSalarial;

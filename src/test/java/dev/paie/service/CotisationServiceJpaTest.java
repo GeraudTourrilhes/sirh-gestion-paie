@@ -26,7 +26,7 @@ public class CotisationServiceJpaTest {
 	@Test
 	public void test_sauvegarder_lister_mettre_a_jour() {
 
-		cotisation = new Cotisation(new Integer(1), "EP50", "l", new BigDecimal("0.54045"), new BigDecimal("0.1478"));
+		cotisation = new Cotisation("EP50", "l", new BigDecimal("0.54045"), new BigDecimal("0.1478"));
 
 		cotisationService.supprimer();
 
