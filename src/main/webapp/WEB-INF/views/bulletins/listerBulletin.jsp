@@ -48,12 +48,12 @@
 	      
 	      	<c:forEach var="bulletinSalaire" items="${bulletinsSalaire}">
 	      		<tr>
-	      		<td><c:out value="${bulletinSalaire.dateCreation}" /></td>
-	      		<td><c:out value="${bulletinSalaire.periode}" /></td>
-	      		<td><c:out value="${bulletinSalaire.remunerationEmploye.matricule}" /></td>
-	      		<td><c:out value="${remunerationService.calculer(bulletinSalaire).salaireBrut}" /></td>
-	      		<td><c:out value="${remunerationService.calculer(bulletinSalaire).netImposable}" /></td>
-	      		<td><c:out value="${remunerationService.calculer(bulletinSalaire).netAPayer}" /></td>
+	      		<td><c:out value="${bulletinSalaire.key.dateCreation}" /></td>
+	      		<td><c:out value="${bulletinSalaire.key.periode}" /></td>
+	      		<td><c:out value="${bulletinSalaire.key.remunerationEmploye.matricule}" /></td>
+	      		<td><c:out value="${bulletinSalaire.value.salaireBrut}" /></td>
+	      		<td><c:out value="${bulletinSalaire.value.netImposable}" /></td>
+	      		<td><c:out value="${bulletinSalaire.value.netAPayer}" /></td>
 	      		<td><a href="#" >Visualiser</a></td>
 	      	</tr>
 	      	</c:forEach>

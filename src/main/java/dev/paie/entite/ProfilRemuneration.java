@@ -3,7 +3,6 @@ package dev.paie.entite;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,10 +18,10 @@ public class ProfilRemuneration {
 	private Integer id;
 	private String code;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "profilRemuneration_cotisationNonImposable", joinColumns = @JoinColumn(name = "ProfilRemuneration_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "cotisationsNonImposables_id", referencedColumnName = "ID"))
 	private List<Cotisation> cotisationsNonImposables;
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "profilRemuneration_cotisation", joinColumns = @JoinColumn(name = "ProfilRemuneration_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "cotisationsImposables_id", referencedColumnName = "ID"))
 	private List<Cotisation> cotisationsImposables;
 	@Transient
