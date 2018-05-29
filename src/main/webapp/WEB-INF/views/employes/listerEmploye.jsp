@@ -43,10 +43,9 @@
 	      
 	      	<c:forEach var="remunerationEmploye" items="${remunerationEmployes}">
 	      		<tr>
-	      		<th><c:out value="${remunerationEmploye.dateCreation}" /></th>
-	      		<th><c:out value="${remunerationEmploye.matricule}" /></th>
-	      		<th><c:out value="${remunerationEmploye.grade}" /></th>
-	      	</tr>
+	      		<td><c:out value="${remunerationEmploye.dateCreation}" /></td>
+	      		<td><c:out value="${remunerationEmploye.matricule}" /></td>
+	      		<td><c:out value="${remunerationEmploye.grade}" /></td></tr>
 	      	</c:forEach>
 	      </table>
 		</div>

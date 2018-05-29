@@ -25,27 +25,36 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h1>Lister des Bulletins</h1>
+          <h1>Liste des bulletins</h1>
         </div>
       </div>
       <div class="row justify-content-end">
-         <a href="<c:url value='/mvc/bulletins/creer' />" class="btn">Ajouter un bulletin</a>
+         <a href="<c:url value='/mvc/bulletins/creer' />" class="btn">Crée un nouveau bulletin</a>
       </div>
       </div>
       <div class="container-fluid">
       	<div class="row">
 	      <table>
 	      	<tr>
-	      		<th class="col-4">Date/heure création</th>
-	      		<th class="col-4">Matricule</th>
-	      		<th class="col-4">Grade</th>
+	      		<th >Date/heure création</th>
+	      		<th >Période</th>
+	      		<th >Matricule</th>
+	      		<th >Salaire brut</th>
+	      		<th >Net Imposable</th>
+	      		<th >Net A Payer</th>
+	      		<th >Action</th>
+
 	      	</tr>
 	      
-	      	<c:forEach var="remunerationEmploye" items="${remunerationEmployes}">
+	      	<c:forEach var="bulletinSalaire" items="${bulletinsSalaire}">
 	      		<tr>
-	      		<th><c:out value="${remunerationEmploye.dateCreation}" /></th>
-	      		<th><c:out value="${remunerationEmploye.matricule}" /></th>
-	      		<th><c:out value="${remunerationEmploye.grade}" /></th>
+	      		<td><c:out value="${bulletinSalaire.dateCreation}" /></td>
+	      		<td><c:out value="${bulletinSalaire.periode}" /></td>
+	      		<td><c:out value="${bulletinSalaire.remunerationEmploye.matricule}" /></td>
+	      		<td><c:out value="${remunerationService.calculer(bulletinSalaire).salaireBrut}" /></td>
+	      		<td><c:out value="${remunerationService.calculer(bulletinSalaire).netImposable}" /></td>
+	      		<td><c:out value="${remunerationService.calculer(bulletinSalaire).netAPayer}" /></td>
+	      		<td><a href="#" >Visualiser</a></td>
 	      	</tr>
 	      	</c:forEach>
 	      </table>
