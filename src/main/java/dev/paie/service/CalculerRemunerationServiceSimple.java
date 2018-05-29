@@ -25,19 +25,6 @@ public class CalculerRemunerationServiceSimple implements CalculerRemunerationSe
 	@Autowired
 	private BulletinSalaireRepository bulletinSalaireRepository;
 
-	public Map<BulletinSalaire, ResultatCalculRemuneration> bulletinCalcul() {
-
-		Map<BulletinSalaire, ResultatCalculRemuneration> result = new HashMap<BulletinSalaire, ResultatCalculRemuneration>();
-
-		List<BulletinSalaire> bulletinsSalaires = bulletinSalaireRepository.findAll();
-		for (BulletinSalaire bulletinSalaire : bulletinsSalaires) {
-			result.put(bulletinSalaire, calculer(bulletinSalaire));
-		}
-
-		return result;
-
-	}
-
 	@Override
 	public ResultatCalculRemuneration calculer(BulletinSalaire bulletin) {
 		ResultatCalculRemuneration resultat = new ResultatCalculRemuneration();
@@ -82,6 +69,19 @@ public class CalculerRemunerationServiceSimple implements CalculerRemunerationSe
 		resultat.setNetImposable(netImposable);
 		resultat.setNetAPayer(netAPayer);
 		return resultat;
+	}
+
+	public Map<BulletinSalaire, ResultatCalculRemuneration> bulletinCalcul() {
+
+		Map<BulletinSalaire, ResultatCalculRemuneration> result = new HashMap<BulletinSalaire, ResultatCalculRemuneration>();
+
+		List<BulletinSalaire> bulletinsSalaires = bulletinSalaireRepository.findAll();
+		for (BulletinSalaire bulletinSalaire : bulletinsSalaires) {
+			result.put(bulletinSalaire, calculer(bulletinSalaire));
+		}
+
+		return result;
+
 	}
 
 }
