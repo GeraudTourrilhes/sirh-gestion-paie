@@ -62,7 +62,7 @@ public class BulletinSalaireController {
 	public ModelAndView listerEmploye() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("bulletins/listerBulletin");
-		mv.addObject("bulletinsSalaire", remunerationService.retournBulletinCalcul());
+		mv.addObject("bulletinsSalaire", remunerationService.bulletinCalcul());
 		return mv;
 	}
 
