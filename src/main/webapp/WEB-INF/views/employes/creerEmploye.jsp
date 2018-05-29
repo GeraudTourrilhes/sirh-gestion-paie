@@ -35,20 +35,18 @@
         </div>
  
         <div class="form-group">
-          <label for="entreprise">Entreprise</label>
+          <label>Entreprise</label>
           <form:select path="entreprise.id" items="${entreprises}" itemValue="id"/>
         </div>
         
         <div class="form-group">
-          	<label for="profil">Profil</label>
-        	<form:select path="profilRemuneration.id" itemValue="id" items="${profilsRemuneration}"/>
+          	<label>Profil</label>
+        	<form:select path="profilRemuneration.id" items="${profilsRemuneration}" itemValue="id"/>
         </div>
         
         <div class="form-group">
-          <label for="grade">Grade</label>
-        
-          <form:select path="grade.id" items="${grades}" itemValue="id"/>
-    
+          <label>Grade</label>
+          <form:select path="grade.id" items="${grades}" itemValue="id" itemLabel="code"/>
         </div>
         
         <div class="row justify-content-end">

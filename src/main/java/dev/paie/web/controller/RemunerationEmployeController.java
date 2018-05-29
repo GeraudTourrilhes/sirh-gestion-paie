@@ -1,7 +1,10 @@
 package dev.paie.web.controller;
 
+import java.time.ZonedDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,12 +49,13 @@ public class RemunerationEmployeController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creer")
+	@Transactional
 	public String submitFormCreerEmploye(
 			@ModelAttribute("remunerationEmploye") RemunerationEmploye remunerationEmploye) {
-
+		remunerationEmploye.setDateCreation(ZonedDateTime.now());
 		remunerationEmployeRepository.save(remunerationEmploye);
 
-		return "employes/creerEmploye";
+		return "redirect:/mvc/employes/lister";
 
 	}
 
