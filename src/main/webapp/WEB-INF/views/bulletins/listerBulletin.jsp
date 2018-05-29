@@ -25,11 +25,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h1>Lister des employés</h1>
+          <h1>Lister des Bulletins</h1>
         </div>
       </div>
       <div class="row justify-content-end">
-         <a href="<c:url value='/mvc/employes/creer' />" class="btn">Ajouter un employe</a>
+         <a href="<c:url value='/mvc/bulletins/creer' />" class="btn">Ajouter un bulletin</a>
       </div>
       </div>
       <div class="container-fluid">

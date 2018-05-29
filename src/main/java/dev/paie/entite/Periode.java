@@ -50,4 +50,9 @@ public class Periode {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return "Du " + dateDebut + " au " + dateFin;
+	}
+
 }

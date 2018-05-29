@@ -1,5 +1,6 @@
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %> 
 <!doctype html>
@@ -11,7 +12,6 @@
 	<link rel="stylesheet" href="<c:url value='/bootstrap-4.1.1-dist/css/bootstrap.css'/>">
 	<script src="<c:url value='/bootstrap-4.1.1-dist/ks/bootstrap.ks'/>"> </script>
 	<link rel="stylesheet" href="<c:url value='/css/index.css'/>">
-
 
     <title>SGP App</title>
   </head>
@@ -25,31 +25,33 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h1>Lister des employés</h1>
+          <h1>Créer Bulletin de Salaire</h1>
         </div>
       </div>
-      <div class="row justify-content-end">
-         <a href="<c:url value='/mvc/employes/creer' />" class="btn">Ajouter un employe</a>
-      </div>
-      </div>
-      <div class="container-fluid">
-      	<div class="row">
-	      <table>
-	      	<tr>
-	      		<th class="col-4">Date/heure création</th>
-	      		<th class="col-4">Matricule</th>
-	      		<th class="col-4">Grade</th>
-	      	</tr>
-	      
-	      	<c:forEach var="remunerationEmploye" items="${remunerationEmployes}">
-	      		<tr>
-	      		<th><c:out value="${remunerationEmploye.dateCreation}" /></th>
-	      		<th><c:out value="${remunerationEmploye.matricule}" /></th>
-	      		<th><c:out value="${remunerationEmploye.grade}" /></th>
-	      	</tr>
-	      	</c:forEach>
-	      </table>
-		</div>
+      <form:form method="POST" modelAttribute="bulletinSalaire">
+      
+       <div class="form-group">
+          <label>Période</label>
+          <form:select path="periode.id" items="${periodes}" itemValue="id"/>
+        </div>
+        
+        <div class="form-group">
+          	<label>Matricule</label>
+        	<form:select path="remunerationEmploye.id" items="${remunerationEmployes}" itemValue="id" itemLabel="matricule"/>
+        </div>
+        
+        <div class="form-group">
+          <label>Prime exceptionnelle</label>
+          <form:input type="text" class="form-control"  path="primeExceptionnelle" />
+        </div>
+ 
+        
+        <div class="row justify-content-end">
+          <form:button type="submit" class="btn btn-primary">Créer</form:button>
+        </div>
+
+      </form:form>
+
     </div>
   </body>
 </html>
