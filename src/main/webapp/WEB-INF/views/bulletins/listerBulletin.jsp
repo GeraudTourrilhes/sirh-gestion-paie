@@ -34,7 +34,7 @@
       </div>
       <div class="container-fluid">
       	<div class="row">
-	      <table>
+	      <table class="table">
 	      	<tr>
 	      		<th >Date/heure création</th>
 	      		<th >Période</th>
@@ -54,7 +54,7 @@
 	      		<td><c:out value="${bulletinSalaire.value.salaireBrut}" /></td>
 	      		<td><c:out value="${bulletinSalaire.value.netImposable}" /></td>
 	      		<td><c:out value="${bulletinSalaire.value.netAPayer}" /></td>
-	      		<td><a href="#" >Visualiser</a></td>
+	      		<td><a href="<c:url value="/mvc/bulletins/lister/${bulletinSalaire.key.id}"/>" >Visualiser</a></td>
 	      	</tr>
 	      	</c:forEach>
 	      </table>

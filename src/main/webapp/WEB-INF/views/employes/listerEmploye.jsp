@@ -34,7 +34,7 @@
       </div>
       <div class="container-fluid">
       	<div class="row">
-	      <table>
+	      <table class="table">
 	      	<tr>
 	      		<th class="col-4">Date/heure création</th>
 	      		<th class="col-4">Matricule</th>

@@ -12,11 +12,9 @@ import dev.paie.config.JeuxDeDonneesConfig;
 import dev.paie.config.ServicesConfig;
 import dev.paie.entite.BulletinSalaire;
 import dev.paie.entite.ResultatCalculRemuneration;
-import dev.paie.util.PaieUtils;
 
 //Sélection des classes de configuration Spring à utiliser lors du test
-@ContextConfiguration(classes = { ServicesConfig.class, CalculerRemunerationServiceSimple.class, PaieUtils.class,
-		JeuxDeDonneesConfig.class })
+@ContextConfiguration(classes = { ServicesConfig.class, JeuxDeDonneesConfig.class })
 // Configuration JUnit pour que Spring prenne la main sur le cycle de vie du
 // test
 
