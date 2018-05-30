@@ -51,7 +51,7 @@ public class BulletinSalaireController {
 
 		mv.setViewName("bulletins/creerBulletin");
 		mv.addObject("periodes", periodeRepository.findAll());
-		mv.addObject("remunerationEmployes", remunerationEmployeRepository.findDistinctMatriculeBy());
+		mv.addObject("remunerationEmployes", remunerationEmployeRepository.findAll());
 		return mv;
 	}
 
@@ -79,7 +79,6 @@ public class BulletinSalaireController {
 		mv.setViewName("bulletins/visualiserBulletin");
 		BulletinSalaire bulletin = bulletinSalaireRepository.findOne(id);
 		Map<BulletinSalaire, ResultatCalculRemuneration> m = remunerationService.bulletinCalcul(bulletin);
-
 		mv.addObject("bulletinsSalaire", remunerationService.bulletinCalcul(bulletin));
 		mv.addObject("paieUtils", paieUtils);
 		return mv;

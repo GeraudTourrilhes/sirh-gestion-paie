@@ -30,8 +30,8 @@
       </div>
       <form:form method="POST" modelAttribute="remunerationEmploye">
         <div class="form-group">
-          <label for="matriule">Matricule</label>
-          <form:input type="text" class="form-control" id="matricule" path="matricule" />
+          <label>Matricule</label>
+          <form:select path="matricule" items="${matricules}"/>
         </div>
  
         <div class="form-group">

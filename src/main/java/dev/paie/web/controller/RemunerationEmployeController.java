@@ -1,6 +1,8 @@
 package dev.paie.web.controller;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.paie.entite.Collegue;
 import dev.paie.entite.RemunerationEmploye;
 import dev.paie.repository.EntrepriseRepository;
 import dev.paie.repository.GradeRepository;
@@ -42,6 +46,13 @@ public class RemunerationEmployeController {
 		// Liaison du modèle et de l'objet.
 		model.addAttribute("remunerationEmploye", remunerationEmploye);
 		mv.setViewName("employes/creerEmploye");
+		RestTemplate rt = new RestTemplate();
+		Collegue[] collegues = rt.getForObject("http://collegues-api.cleverapps.io/collegues/", Collegue[].class);
+		List<String> matricules = new ArrayList<String>();
+		for (Collegue collegue : collegues) {
+			matricules.add(collegue.getMatricule());
+		}
+		mv.addObject("matricules", matricules);
 		mv.addObject("entreprises", entrepriseRepository.findAll());
 		mv.addObject("profilsRemuneration", profilRemunerationsRepository.findAll());
 		mv.addObject("grades", gradeRepository.findAll());

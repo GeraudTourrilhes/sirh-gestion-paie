@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dev.paie.entite.Cotisation;
 import dev.paie.entite.Entreprise;
@@ -49,6 +50,7 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 	private List<Cotisation> cotisations;
 
+	@Transactional
 	@Override
 	public void initialiser() {
 
@@ -64,6 +66,12 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 		entreprises = new ArrayList<Entreprise>(context.getBeansOfType(Entreprise.class).values());
 
 		context.close();
+
+		// Stream.of(Entreprise.class, Cotisation.class, Grade.class,
+		// ProfilRemuneration.class)
+		// .flatMap(c ->context.getBeansOfType(c).values().stream())
+		// .forEach(em::persist);
+
 		for (Entreprise entreprise : entreprises) {
 			entrepriseRepository.save(entreprise);
 		}
@@ -81,6 +89,13 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 		}
 
 		int anneeCourante = Calendar.getInstance().get(Calendar.YEAR);
+		/*
+		 * IntStream.rangeClosed(0, 12) .mapToObj(i -> { Month mois =
+		 * Month.of(i); LocalDate dateDebut = LocalDate.of(anneeCourante, mois,
+		 * 01); LocalDate dateFin = LocalDate.of(anneeCourante, mois,
+		 * dateDebut.lengthOfMonth()); Periode p = new Periode(dateDebut,
+		 * dateFin); return p; }) .forEach(em::persist);
+		 */
 
 		for (int i = 1; i < 13; i++) {
 			Month mois = Month.of(i);
