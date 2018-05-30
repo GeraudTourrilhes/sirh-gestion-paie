@@ -1,8 +1,12 @@
 package dev.paie.web.controller.api;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.paie.entite.Cotisation;
-import dev.paie.entite.Message;
 import dev.paie.repository.CotisationRepository;
 
 @RestController
@@ -26,12 +29,15 @@ public class CotisationApiController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/{code}")
-	public Object visualiserCotisation(@PathVariable String code) {
-		Object result = null;
-		if (cotisationRepository.findByCode(code) == null) {
-			result = new Message("Code de cotisations non trouvé");
+	public ResponseEntity<Object> visualiserCotisation(@PathVariable String code) {
+		ResponseEntity<Object> result = null;
+		Cotisation cotisation = cotisationRepository.findByCode(code);
+		if (cotisation == null) {
+			Map<String, String> message = new HashMap<>();
+			message.put("message", "Code de cotisations non trouvé");
+			result = ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
 		} else {
-			result = cotisationRepository.findByCode(code);
+			result = ResponseEntity.status(HttpStatus.OK).body(cotisation);
 		}
 
 		return result;
