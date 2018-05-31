@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @ComponentScan("dev.paie.service, dev.paie.util")
-@Import({ JpaConfig.class, DataSourceMySQLConfig.class })
+@Import({ JpaConfig.class, H2Config.class })
 
 @EnableJpaRepositories("dev.paie.repository")
 public class ServicesConfig {
