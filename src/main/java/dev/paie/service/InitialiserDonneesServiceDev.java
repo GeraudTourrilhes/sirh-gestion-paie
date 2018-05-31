@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,16 +17,22 @@ import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
+import dev.paie.entite.Utilisateur;
+import dev.paie.entite.Utilisateur.ROLES;
 import dev.paie.repository.CotisationRepository;
 import dev.paie.repository.EntrepriseRepository;
 import dev.paie.repository.GradeRepository;
 import dev.paie.repository.PeriodeRepository;
 import dev.paie.repository.ProfilRemunerationRepository;
+import dev.paie.repository.UtilisateurRepository;
 
 @Service
 public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 	private ClassPathXmlApplicationContext context;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private GradeRepository gradeRepository;
@@ -41,6 +48,9 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 	@Autowired
 	private PeriodeRepository periodeRepository;
+
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
 
 	private List<Entreprise> entreprises;
 
@@ -66,6 +76,11 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 		entreprises = new ArrayList<Entreprise>(context.getBeansOfType(Entreprise.class).values());
 
 		context.close();
+
+		utilisateurRepository
+				.save(new Utilisateur("admin", this.passwordEncoder.encode("admin"), true, ROLES.ROLE_ADMINISTRATEUR));
+		utilisateurRepository
+				.save(new Utilisateur("user", this.passwordEncoder.encode("user"), true, ROLES.ROLE_UTILISATEUR));
 
 		// Stream.of(Entreprise.class, Cotisation.class, Grade.class,
 		// ProfilRemuneration.class)
