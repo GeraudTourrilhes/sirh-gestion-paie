@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -38,6 +39,7 @@ public class RemunerationEmployeController {
 	private RemunerationEmployeRepository remunerationEmployeRepository;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/creer")
+	@Secured("ROLE_ADMINISTRATEUR")
 	public ModelAndView creerEmploye(Model model) {
 
 		ModelAndView mv = new ModelAndView();
@@ -61,6 +63,7 @@ public class RemunerationEmployeController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creer")
 	@Transactional
+	@Secured("ROLE_ADMINISTRATEUR")
 	public String submitFormCreerEmploye(
 			@ModelAttribute("remunerationEmploye") RemunerationEmploye remunerationEmploye) {
 		remunerationEmploye.setDateCreation(ZonedDateTime.now());
@@ -71,6 +74,7 @@ public class RemunerationEmployeController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/lister")
+	@Secured({ "ROLE_UTILISATEUR", "ROLE_ADMINISTRATEUR" })
 	public ModelAndView listerEmploye() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("employes/listerEmploye");

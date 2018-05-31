@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="<c:url value='/bootstrap-4.1.1-dist/css/bootstrap.css'/>">
-	<script src="<c:url value='/bootstrap-4.1.1-dist/ks/bootstrap.ks'/>"> </script>
+	<script src="<c:url value='/bootstrap-4.1.1-dist/js/bootstrap.js'/>"> </script>
 	<link rel="stylesheet" href="<c:url value='/css/index.css'/>">
 
     <title>SGP App</title>

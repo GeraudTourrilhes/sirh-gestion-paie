@@ -1,7 +1,6 @@
 package dev.paie.web.controller;
 
 import java.time.ZonedDateTime;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.paie.entite.BulletinSalaire;
-import dev.paie.entite.ResultatCalculRemuneration;
 import dev.paie.repository.BulletinSalaireRepository;
 import dev.paie.repository.PeriodeRepository;
 import dev.paie.repository.RemunerationEmployeRepository;
@@ -78,7 +76,13 @@ public class BulletinSalaireController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("bulletins/visualiserBulletin");
 		BulletinSalaire bulletin = bulletinSalaireRepository.findOne(id);
-		Map<BulletinSalaire, ResultatCalculRemuneration> m = remunerationService.bulletinCalcul(bulletin);
+		/*
+		 * RestTemplate rt = new RestTemplate(); Collegue collegue =
+		 * rt.getForObject(
+		 * "http://collegues-api.cleverapps.io/collegues?maticule=" +
+		 * bulletin.getRemunerationEmploye().getMatricule(), Collegue.class);
+		 * mv.addObject("collegue", collegue);
+		 */
 		mv.addObject("bulletinsSalaire", remunerationService.bulletinCalcul(bulletin));
 		mv.addObject("paieUtils", paieUtils);
 		return mv;
